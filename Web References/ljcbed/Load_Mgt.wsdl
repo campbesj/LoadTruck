@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="CreateLoad">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="routeCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="trailer" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shipDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateLoad_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyTrailer">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="trailerID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="VerifyTrailer_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="CreateLoad">
+    <part name="parameters" element="tns:CreateLoad" />
+  </message>
+  <message name="CreateLoad_Result">
+    <part name="parameters" element="tns:CreateLoad_Result" />
+  </message>
+  <message name="VerifyTrailer">
+    <part name="parameters" element="tns:VerifyTrailer" />
+  </message>
+  <message name="VerifyTrailer_Result">
+    <part name="parameters" element="tns:VerifyTrailer_Result" />
+  </message>
+  <portType name="Load_Mgt_Port">
+    <operation name="CreateLoad">
+      <input name="CreateLoad" message="tns:CreateLoad" />
+      <output name="CreateLoad_Result" message="tns:CreateLoad_Result" />
+    </operation>
+    <operation name="VerifyTrailer">
+      <input name="VerifyTrailer" message="tns:VerifyTrailer" />
+      <output name="VerifyTrailer_Result" message="tns:VerifyTrailer_Result" />
+    </operation>
+  </portType>
+  <binding name="Load_Mgt_Binding" type="tns:Load_Mgt_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="CreateLoad">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:CreateLoad" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateLoad">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateLoad_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="VerifyTrailer">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:VerifyTrailer" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="VerifyTrailer">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="VerifyTrailer_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="Load_Mgt">
+    <port name="Load_Mgt_Port" binding="tns:Load_Mgt_Binding">
+      <address location="http://jcbed-2014.jcbed.local:6047/JCBED/WS/JC%20Bedding/Codeunit/Load_Mgt" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

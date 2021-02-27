@@ -33,6 +33,12 @@ namespace LoadTruck.ljcbed {
         
         private System.Threading.SendOrPostCallback VerifyTrailerOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ScanTagOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback UnloadTagOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback CloseLoadOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -76,6 +82,15 @@ namespace LoadTruck.ljcbed {
         
         /// <remarks/>
         public event VerifyTrailerCompletedEventHandler VerifyTrailerCompleted;
+        
+        /// <remarks/>
+        public event ScanTagCompletedEventHandler ScanTagCompleted;
+        
+        /// <remarks/>
+        public event UnloadTagCompletedEventHandler UnloadTagCompleted;
+        
+        /// <remarks/>
+        public event CloseLoadCompletedEventHandler CloseLoadCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:CreateLoad", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", ResponseElementName="CreateLoad_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -142,6 +157,98 @@ namespace LoadTruck.ljcbed {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:ScanTag", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", ResponseElementName="ScanTag_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string ScanTag(string trailerID, int tagno) {
+            object[] results = this.Invoke("ScanTag", new object[] {
+                        trailerID,
+                        tagno});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ScanTagAsync(string trailerID, int tagno) {
+            this.ScanTagAsync(trailerID, tagno, null);
+        }
+        
+        /// <remarks/>
+        public void ScanTagAsync(string trailerID, int tagno, object userState) {
+            if ((this.ScanTagOperationCompleted == null)) {
+                this.ScanTagOperationCompleted = new System.Threading.SendOrPostCallback(this.OnScanTagOperationCompleted);
+            }
+            this.InvokeAsync("ScanTag", new object[] {
+                        trailerID,
+                        tagno}, this.ScanTagOperationCompleted, userState);
+        }
+        
+        private void OnScanTagOperationCompleted(object arg) {
+            if ((this.ScanTagCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ScanTagCompleted(this, new ScanTagCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:UnloadTag", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", ResponseElementName="UnloadTag_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string UnloadTag(int tagNo) {
+            object[] results = this.Invoke("UnloadTag", new object[] {
+                        tagNo});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void UnloadTagAsync(int tagNo) {
+            this.UnloadTagAsync(tagNo, null);
+        }
+        
+        /// <remarks/>
+        public void UnloadTagAsync(int tagNo, object userState) {
+            if ((this.UnloadTagOperationCompleted == null)) {
+                this.UnloadTagOperationCompleted = new System.Threading.SendOrPostCallback(this.OnUnloadTagOperationCompleted);
+            }
+            this.InvokeAsync("UnloadTag", new object[] {
+                        tagNo}, this.UnloadTagOperationCompleted, userState);
+        }
+        
+        private void OnUnloadTagOperationCompleted(object arg) {
+            if ((this.UnloadTagCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.UnloadTagCompleted(this, new UnloadTagCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:CloseLoad", RequestNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", ResponseElementName="CloseLoad_Result", ResponseNamespace="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("return_value")]
+        public string CloseLoad(string trailerID) {
+            object[] results = this.Invoke("CloseLoad", new object[] {
+                        trailerID});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CloseLoadAsync(string trailerID) {
+            this.CloseLoadAsync(trailerID, null);
+        }
+        
+        /// <remarks/>
+        public void CloseLoadAsync(string trailerID, object userState) {
+            if ((this.CloseLoadOperationCompleted == null)) {
+                this.CloseLoadOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCloseLoadOperationCompleted);
+            }
+            this.InvokeAsync("CloseLoad", new object[] {
+                        trailerID}, this.CloseLoadOperationCompleted, userState);
+        }
+        
+        private void OnCloseLoadOperationCompleted(object arg) {
+            if ((this.CloseLoadCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CloseLoadCompleted(this, new CloseLoadCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -199,6 +306,84 @@ namespace LoadTruck.ljcbed {
         private object[] results;
         
         internal VerifyTrailerCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void ScanTagCompletedEventHandler(object sender, ScanTagCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ScanTagCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ScanTagCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void UnloadTagCompletedEventHandler(object sender, UnloadTagCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class UnloadTagCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal UnloadTagCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void CloseLoadCompletedEventHandler(object sender, CloseLoadCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CloseLoadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CloseLoadCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

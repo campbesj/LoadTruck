@@ -25,10 +25,11 @@ else
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <button onclick="location.href='@Url.Action("Create", "Scan")';return false;">Scan</button>
-        <button onclick="location.href='@Url.Action("Create", "Load")';return false;">Create Load</button>
-    </div>
+<div class="form-horizontal">
+    <button onclick="location.href='@Url.Action("Create", "Scan")';return false;">Scan</button>
+    <button onclick="location.href='@Url.Action("Create", "Load")';return false;">Create Load</button>
+    <button onclick="location.href='@Url.Action("Close", "Scan")';return false;">Close Load</button>
+</div>
 }
 
 <div>

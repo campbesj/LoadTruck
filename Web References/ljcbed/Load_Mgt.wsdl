@@ -32,6 +32,49 @@
           </sequence>
         </complexType>
       </element>
+      <element name="ScanTag">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="trailerID" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tagno" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ScanTag_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UnloadTag">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="tagNo" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UnloadTag_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CloseLoad">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="trailerID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CloseLoad_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
     </schema>
   </types>
   <message name="CreateLoad">
@@ -46,6 +89,24 @@
   <message name="VerifyTrailer_Result">
     <part name="parameters" element="tns:VerifyTrailer_Result" />
   </message>
+  <message name="ScanTag">
+    <part name="parameters" element="tns:ScanTag" />
+  </message>
+  <message name="ScanTag_Result">
+    <part name="parameters" element="tns:ScanTag_Result" />
+  </message>
+  <message name="UnloadTag">
+    <part name="parameters" element="tns:UnloadTag" />
+  </message>
+  <message name="UnloadTag_Result">
+    <part name="parameters" element="tns:UnloadTag_Result" />
+  </message>
+  <message name="CloseLoad">
+    <part name="parameters" element="tns:CloseLoad" />
+  </message>
+  <message name="CloseLoad_Result">
+    <part name="parameters" element="tns:CloseLoad_Result" />
+  </message>
   <portType name="Load_Mgt_Port">
     <operation name="CreateLoad">
       <input name="CreateLoad" message="tns:CreateLoad" />
@@ -54,6 +115,18 @@
     <operation name="VerifyTrailer">
       <input name="VerifyTrailer" message="tns:VerifyTrailer" />
       <output name="VerifyTrailer_Result" message="tns:VerifyTrailer_Result" />
+    </operation>
+    <operation name="ScanTag">
+      <input name="ScanTag" message="tns:ScanTag" />
+      <output name="ScanTag_Result" message="tns:ScanTag_Result" />
+    </operation>
+    <operation name="UnloadTag">
+      <input name="UnloadTag" message="tns:UnloadTag" />
+      <output name="UnloadTag_Result" message="tns:UnloadTag_Result" />
+    </operation>
+    <operation name="CloseLoad">
+      <input name="CloseLoad" message="tns:CloseLoad" />
+      <output name="CloseLoad_Result" message="tns:CloseLoad_Result" />
     </operation>
   </portType>
   <binding name="Load_Mgt_Binding" type="tns:Load_Mgt_Port">
@@ -76,10 +149,37 @@
         <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
       </output>
     </operation>
+    <operation name="ScanTag">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:ScanTag" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ScanTag">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ScanTag_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UnloadTag">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:UnloadTag" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UnloadTag">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UnloadTag_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CloseLoad">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/Load_Mgt:CloseLoad" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CloseLoad">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CloseLoad_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
   </binding>
   <service name="Load_Mgt">
     <port name="Load_Mgt_Port" binding="tns:Load_Mgt_Binding">
-      <address location="http://jcbed-2014.jcbed.local:6047/JCBED/WS/JC%20Bedding/Codeunit/Load_Mgt" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <address location="http://jcbed-2014.jcbed.local:6047/JCBED/WS/JCBTestCo/Codeunit/Load_Mgt" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
     </port>
   </service>
 </definitions>

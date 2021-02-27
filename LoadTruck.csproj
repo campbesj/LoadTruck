@@ -243,6 +243,7 @@
     <Content Include="Views\Shared\nologo.cshtml" />
     <Content Include="Views\Scan\Create.cshtml" />
     <Content Include="Views\Load\Create.cshtml" />
+    <Content Include="Views\Scan\Close.cshtml" />
     <None Include="Web References\ljcbed\Load_Mgt.wsdl" />
     <None Include="Web References\ljcbed\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

@@ -26,7 +26,7 @@ namespace LoadTruck.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://jcbed-2014.jcbed.local:6047/JCBED/WS/JC%20Bedding/Codeunit/Load_Mgt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://jcbed-2014.jcbed.local:6047/JCBED/WS/JCBTestCo/Codeunit/Load_Mgt")]
         public string LoadTruck_ljcbed_Load_Mgt {
             get {
                 return ((string)(this["LoadTruck_ljcbed_Load_Mgt"]));

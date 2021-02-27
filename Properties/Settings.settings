@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="LoadTruck_ljcbed_Load_Mgt" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://jcbed-2014.jcbed.local:6047/JCBED/WS/JC%20Bedding/Codeunit/Load_Mgt</Value>
+      <Value Profile="(Default)">http://jcbed-2014.jcbed.local:6047/JCBED/WS/JCBTestCo/Codeunit/Load_Mgt</Value>
     </Setting>
   </Settings>
 </SettingsFile>

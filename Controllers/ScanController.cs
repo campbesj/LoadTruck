@@ -44,7 +44,7 @@ namespace LoadTruck.Controllers
             {
                 tl.hasError = false;
                 // TODO: Add insert logic here
-                if (tl.TrailerID == null)
+                if ((tl.TrailerID == null) || (tl.TrailerID == ""))
                 {
                     tl.hasError = true;
                     TempData["message"] = "Trailer Missing";
@@ -65,13 +65,14 @@ namespace LoadTruck.Controllers
                 {
                     Lawtag lt = new Lawtag();
                     lt.TagNum = tl.LawTag;
+                    lt.TrailerID = tl.TrailerID;
                     string ltmessage = lt.store();
                     TempData["message"] = ltmessage;
                     if (ltmessage.Contains("already"))
                     {
                         if (tl.LawTagDelete == "yes")
                         {
-                            //do delete
+                            lt.delete();
                             tl.LawTagStatus = "none";
                             tl.LawTagDelete = "no";
                             tl.LawTag = null;
@@ -95,6 +96,69 @@ namespace LoadTruck.Controllers
                 return View();
             }
         }
+
+
+        /// <summary>
+        /// ////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Close()
+        {
+            TruckLoad tl = new TruckLoad();
+            if (!(TempData["load"] == null))
+            {
+                tl = (TruckLoad)TempData["load"];
+            }
+            if (!(TempData["message"] == null))
+            {
+                ViewBag.Message = TempData["message"].ToString();
+            }
+            return View(tl);
+        }
+
+        // POST: Scan/Create
+        [HttpPost]
+        public ActionResult Close(TruckLoad tl)
+        {
+            try
+            {
+                tl.hasError = false;
+                // TODO: Add insert logic here
+                if ((tl.TrailerID == null) || (tl.TrailerID == ""))
+                {
+                    tl.hasError = true;
+                    TempData["message"] = "Trailer Missing";
+                }
+                else
+                {
+                    string ret = tl.closeTrailer();
+                    TempData["message"] = ret;
+                    if (!ret.Contains("Success"))
+                    {
+                        tl.hasError = false;
+                        tl.hasError = true;
+                        tl.TrailerID = "";
+                    }
+
+                }
+
+                
+                TempData["load"] = tl;
+                return RedirectToAction("Create");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
+
+
+
 
         // GET: Scan/Edit/5
         public ActionResult Edit(int id)
